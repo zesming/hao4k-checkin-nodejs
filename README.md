@@ -1,6 +1,6 @@
 # 4ksj-checkin
 
-2024/10/18 修复4ksj签到，弃用hao4k签到
+2024/11/15 修复4ksj cookie失效
 
 #### 脚本功能：
 
@@ -30,7 +30,6 @@ https://chromewebstore.google.com/detail/header-cookie-qrcode-case/echlhpliefhch
 3. 在自己的仓库“Settings”里根据需要创建**“Secrets => Actions => New repository secret”**， （不开启通知，只需要创建一个SJCOOKIE即可）
 
    分别添加：
-   ~~- COOKIE （**必填**； **填写Hao4K的cookie**）~~ 
    - SJCOOKIE （**必填**； **填写4K视界的cookie**）
    - PPTOKEN （填写推送加的token, 不开启不用填）
    - PDKEY （填写PushDeer的key, 不开启不用填）
