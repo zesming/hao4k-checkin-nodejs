@@ -7,6 +7,10 @@ import * as cheerio from 'cheerio';
 axios.defaults.retry = 3; //设置全局请求次数
 axios.defaults.retryDelay = 1000;//设置全局请求间隙
 
+// 填写Telegram的Bot API和Chat ID
+const telegramToken = process.env.TELEGRAM_TOKEN
+const telegramID = process.env.TELEGRAM_ID
+
 // 填写server酱sckey,不开启server酱则不用填
 const sckey = process.env["SCKEY"];
 
@@ -277,6 +281,11 @@ function pushNotice(status, message) {
         console.log("通过bark推送消息");
         sendBarkMsg(status, message);
     }
+    
+    if (telegramToken) {
+        console.log("通过Telegram推送消息");
+        sendTelegramMsg(status, message);
+    }
     console.log("结束推送消息")
 }
 
@@ -324,6 +333,23 @@ function sendBarkMsg(status, info) {
     axios
         .get(barkUrl)
         .catch((e) => {
+            console.log(e);
+        })
+}
+
+/**
+ * 通过 Telegram 发送消息
+ * @param {*} status 签到结果
+ * @param {*} info 签到返回信息
+ */
+function sendTelegramMsg(status, info) {
+    axios
+        .post("https://api.telegram.org/bot" + telegramToken + "/sendMessage", {
+            'chat_id': telegramID,
+            'text': '<b>' + status + '</b>\n' + info,
+            'parse_mode': 'HTML'
+        })
+        .catch((e)=>{
             console.log(e);
         })
 }
