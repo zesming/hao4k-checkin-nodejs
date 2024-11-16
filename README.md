@@ -36,6 +36,8 @@ https://chromewebstore.google.com/detail/header-cookie-qrcode-case/echlhpliefhch
    - SCKEY （填写server酱sckey，不开启server酱则不用填）
    - BARKKEY (填写bark的key，不开启bark推送则不用填，默认使用官方服务器发送，如需自定义请通过BARKSERVER配置)
    - BARKSERVER (填写bark的服务器地址，不开启bark推送则不用填)
+   - TELEGRAM_TOKEN（填写Telegram bot的Token）
+   - TELEGRAM_ID (填写通过访问 https://api.telegram.org/bot<TELEGRAM_TOKEN>/getUpdates 获取的chat id)
 
 4. 以上设置完毕后，每天0点和6点会自动触发，并会执行自动签到（**0点GitHub网络经常抽风**，故多增加一次执行,可自行改时间）。
 
