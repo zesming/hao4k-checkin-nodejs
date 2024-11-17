@@ -37,14 +37,15 @@ let cookie = process.env["COOKIE"];
 // 填入4KSJ账号对应Cookie
 let cookieSJ = process.env["SJCOOKIE"];
 
-// 更新 cookie 中 will_timelogout_749583 的值为当前日期的时间戳
-function updateCookieLogoutTime(cookieStr) {
-    const timestamp = Math.floor(Date.now() / 1000);
-    return cookieStr.replace(/(will_timelogout_\d+=)\d+/, `$1${timestamp}`);
+// 更新 cookie 中 will_timelogout_XXXXXX 的值为当前时间戳加一天
+function updateCookieLogoutTimePlusOneDay(cookieStr) {
+    const oneDayInSeconds = 24 * 60 * 60;
+    const timestampPlusOneDay = Math.floor(Date.now() / 1000) + oneDayInSeconds;
+    return cookieStr.replace(/(will_timelogout_\d+=)\d+/, `$1${timestampPlusOneDay}`);
 }
 
-// 更新 cookie
-cookieSJ = updateCookieLogoutTime(cookieSJ);
+cookieSJ = updateCookieLogoutTimePlusOneDay(cookieSJ);
+
 
 
 const SJUrl =
